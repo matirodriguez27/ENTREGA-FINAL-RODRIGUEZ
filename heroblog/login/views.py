@@ -1,4 +1,4 @@
-from login.forms import UserRegisterForm
+from login.forms import UserRegisterForm, UserEditForm
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -35,3 +35,19 @@ def signup(request):
         form = UserCreationForm()
         return render(request, "signup.html", {"form":form})
 
+def userEdit(request):
+    usuario = request.user
+    if request.method == "POST":
+        form = UserEditForm(request.POST)
+        if form.is_valid():
+            informacion = form
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.save()
+            return render(request, "index.html")
+        else:
+            return render(request,"index.html", {"mensaje":"Formulario invalido"})
+    else:
+        form = UserEditForm(initial={'email':usuario.email})
+        return render(request, "useredit.html", {"form":form, "usuario": usuario})
