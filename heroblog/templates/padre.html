@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+    <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Hero-Wiki</title>
+        
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/simplegrid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightcase.css' %}">
+    <link rel="stylesheet" href="{% static 'js/owl-carousel/owl.carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'js/owl-carousel/owl.theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'js/owl-carousel/owl.transitions.css' %}" />
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+    </head>
+
+    <body id="home">
+        <!-- Header -->
+        <header id="top-header" class="header-home">
+            <div class="grid">
+                <div class="col-1-1">
+                    <div class="content">
+                        <div class="logo-wrap">
+                            <a href="#0" class="logo">Hero-Blog</a>
+                        </div>
+                        <nav class="navigation">
+                            <input type="checkbox" id="nav-button">
+                            <label for="nav-button" onclick></label>
+                            <ul class="nav-container">
+                                <li><a href="{% url 'inicio'%}">Inicio</a></li>
+                                <li><a href="{% url 'inicio'%}">Blog</a></li>
+                                <li><a href="{% url 'inicio'%}">Mensajería</a></li>
+                                <li><a href="{% url 'inicio'%}">Login</a></li>
+                                <li><a href="{% url 'inicio'%}">Acerca de</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- End Header -->
+
+        <!-- Parallax Section -->
+        <div class="parallax-section parallax1">
+            <div class="grid grid-pad">
+                <div class="col-1-1">
+                    <div class="content content-header" >
+                        <h2>Hero-Blog</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Parallax Section -->
+        <!-- CurveUp -->
+        <svg class="curveUpColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 100 C 30 30 40 30 100 100 Z"></path>
+        </svg>
+
+        {% block contenidoVariable%}
+        {% endblock %}
+        
+        <!-- CurveDown -->
+        <svg class="curveDownColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 0 C 50 100 80 100 100 0 Z"></path>
+        </svg>
+
+        <!-- Footer -->
+        <footer class="wrap">
+            <div class="social-footer">
+                <div class="grid grid-pad">
+                    <div class="col-1-1" >
+                        <div class="content">
+                            <p class="source-org copyright">© 2022 | Entrega final | Rodriguez</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+        <div class="loader-overlay">
+            <div class="loader">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+                
+        <!-- JS -->
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/mixitup.js' %}"></script>
+        <script src="{% static 'js/smoothscroll.js' %}"></script>
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/owl-carousel/owl.carousel.min.js.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+        <script src="{% static 'js/jquery.counterup.min.js.js' %}"></script>
+        <script src="{% static 'js/lightcase.min.js' %}"></script>
+    </body>
+</html>
