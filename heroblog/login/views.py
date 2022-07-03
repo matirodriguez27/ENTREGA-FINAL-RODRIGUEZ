@@ -1,4 +1,4 @@
-from login.forms import UserRegisterForm, UserEditForm
+from login.forms import UserRegisterForm, UserEditForm, UserProfileForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -28,7 +28,6 @@ def signup(request):
     if request.method == "POST":
         form = UserRegisterForm(data = request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
             form.save()
             return render(request, "index.html", {"mensaje":"Usuario registrado"})
         else:
@@ -37,20 +36,20 @@ def signup(request):
         form = UserRegisterForm()
         return render(request, "signup.html", {"form":form})
 
+
+
 @login_required
-def userEdit(request):
-    usuario = request.user
-    if request.method == "POST":
-        form = UserEditForm(request.POST)
-        if form.is_valid():
-            informacion = form
-            usuario.first_name = informacion['first_name']
-            usuario.password1 = informacion['password1']
-            usuario.password2 = informacion['password2']
-            usuario.save()
-            return redirect(to='userEdit')
-        else:
-            return render(request,"error.html", {"mensaje":"Formulario invalido"})
+def profile(request):
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect(to='profile')
     else:
-        form = UserEditForm(initial={'email':usuario.email})
-        return render(request, "useredit.html", {"form":form, "usuario": usuario})
+        user_form = UserEditForm(instance=request.user)
+        profile_form = UserProfileForm(instance=request.user.profile)
+
+    return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form})
