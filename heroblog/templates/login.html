@@ -3,11 +3,12 @@
 {% load static %}
 
 {% block contenidoVariable%}
-
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit"> Iniciar sesion</button><li><a href="{% url 'signup'%}">Registrarse</a></li>
-    </form>
-    
+    <div class="content contact-form">
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn submit" type="submit"> Iniciar sesión</button>
+            <li><a href="{% url 'signup'%}">Registrarse</a></li>
+        </form>
+    </div>
 {% endblock %}

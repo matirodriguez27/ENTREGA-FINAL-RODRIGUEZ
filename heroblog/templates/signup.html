@@ -3,9 +3,12 @@
 {% load static %}
 
 {% block contenidoVariable%}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit"> Registrarse</button>+-
-    </form>
+    
+    <div class="content contact-form">
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn submit" type="submit"> Registrarse</button>
+        </form>
+    </div>
 {% endblock %}

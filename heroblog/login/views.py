@@ -15,11 +15,11 @@ def login_request(request):
             user = authenticate(username=usuario,password=contrasena)
             if user is not None:
                 login(request, user)
-                return render(request, "index.html", {"mensaje":f"Bienvenido {usuario}"})
+                return redirect('profile')
             else:
-                return render(request,"index.html", {"mensaje":"Datos incorrectos"})
+                return render(request,"error.html", {"mensaje":"Datos incorrectos"})
         else:
-            return render(request,"index.html", {"mensaje":"Formulario invalido"})
+            return render(request,"error.html", {"mensaje":"Formulario invalido"})
     else:
         form = AuthenticationForm()
         return render(request, "login.html", {'form':form})
@@ -29,9 +29,9 @@ def signup(request):
         form = UserRegisterForm(data = request.POST)
         if form.is_valid():
             form.save()
-            return render(request, "index.html", {"mensaje":"Usuario registrado"})
+            return redirect('login')
         else:
-            return render(request,"index.html", {"mensaje":"Formulario invalido"})
+            return render(request,"error.html", {"mensaje":"Formulario invalido"})
     else:
         form = UserRegisterForm()
         return render(request, "signup.html", {"form":form})
@@ -47,7 +47,7 @@ def profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect(to='profile')
+            return redirect(to='inicio')
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = UserProfileForm(instance=request.user.profile)
