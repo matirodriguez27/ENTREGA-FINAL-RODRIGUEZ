@@ -1,7 +1,9 @@
 from login.forms import UserRegisterForm, UserEditForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+
 
 
 def login_request(request):
@@ -24,7 +26,7 @@ def login_request(request):
 
 def signup(request):
     if request.method == "POST":
-        form = UserCreationForm(data = request.POST)
+        form = UserRegisterForm(data = request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             form.save()
@@ -32,22 +34,23 @@ def signup(request):
         else:
             return render(request,"index.html", {"mensaje":"Formulario invalido"})
     else:
-        form = UserCreationForm()
+        form = UserRegisterForm()
         return render(request, "signup.html", {"form":form})
 
+@login_required
 def userEdit(request):
     usuario = request.user
     if request.method == "POST":
         form = UserEditForm(request.POST)
         if form.is_valid():
             informacion = form
-            usuario.email = informacion['email']
+            usuario.first_name = informacion['first_name']
             usuario.password1 = informacion['password1']
             usuario.password2 = informacion['password2']
             usuario.save()
-            return render(request, "index.html")
+            return redirect(to='userEdit')
         else:
-            return render(request,"index.html", {"mensaje":"Formulario invalido"})
+            return render(request,"error.html", {"mensaje":"Formulario invalido"})
     else:
         form = UserEditForm(initial={'email':usuario.email})
         return render(request, "useredit.html", {"form":form, "usuario": usuario})
