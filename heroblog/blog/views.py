@@ -6,6 +6,7 @@ from django.views.generic.detail import DetailView
 from .models import Post
 from django.urls import reverse_lazy 
 from .forms import PostForm
+from django.utils import timezone
 
 class ListaPosts(ListView):
     model = Post
@@ -22,16 +23,25 @@ class BorrarPost(DeleteView):
     model = Post
     template_name = "borrarpost.html"
     success_url= reverse_lazy('Lista')
-def nuevoPost(request):
+class NuevoPost(CreateView):
+    model = Post
+    template_name = "nuevopost.html"
+    fields = '__all__'
+def agregarPost(request):
     if request.method == "POST":
-        form = PostForm(data = request.POST)
-        form.autor = self.request.usuario
+        usuario = request.user
+        form = PostForm(request.POST)
+        form.autor = usuario.id
+        form.fecha = timezone.now
+        form.imagen = 'default.jpeg'
         if form.is_valid():
             form.save()
-            return redirect('Lista')
+            return redirect(to='Lista')
         else:
-            return render(request,"error.html", {"mensaje":"Formulario invalido"})
+            return render(request,"error.html", {"mensaje":form.errors})
     else:
         form = PostForm()
         return render(request, "nuevopost.html", {"form":form})
+
+
 

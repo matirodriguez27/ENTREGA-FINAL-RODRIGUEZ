@@ -3,12 +3,23 @@
 {% load static %}
 
 {% block contenidoVariable%}
-    
-    <div class="content contact-form">
-        <form class="form" action="" method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button class="btn submit" type="submit"> Publicar</button>
-        </form>
+<div class="row my-3 p-3">
+    <img class="rounded-circle account-img" src="{{ user.profile.avatar.url }} " style="cursor: pointer;"/>
+</div>
+{% if user_form.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <div id="form_errors">
+            {% for key, value in user_form.errors.items %}
+                <h4>{{ value }}</h4>
+            {% endfor %}
+        </div>
     </div>
+{% endif %}
+<div class="form-content">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-dark btn-lg">Guardar cambios</button>
+    </form>
+</div>
 {% endblock %}

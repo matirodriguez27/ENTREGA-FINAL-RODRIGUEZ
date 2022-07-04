@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     titulo = models.CharField(max_length=250)
     subtitulo = models.CharField(max_length=250)
-    autor = models.ForeignKey('auth.User',on_delete=models.CASCADE,related_name='blog_posts')
+    autor = models.ForeignKey(User,on_delete=models.CASCADE)
     cuerpo = models.TextField()
     fecha = models.DateTimeField(default=timezone.now)
-    imagen = models. ImageField(upload_to='posts')
+    imagen = models.ImageField(upload_to='posts')
 
     def __str__(self):
         return self.autor.username
