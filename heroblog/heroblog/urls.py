@@ -10,4 +10,5 @@ urlpatterns = [
     path('', inicio, name = "inicio"),
     path('about/', about, name = "about"),
     path('', include('login.urls')),
+    path('', include('blog.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

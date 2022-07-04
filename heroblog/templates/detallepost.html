@@ -1,0 +1,14 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoVariable%}
+    
+    <div class="content contact-form">
+        <p>Titulo: <i>{{model.titulo}} </i></p>
+        <p>Subitulo: <i>{{model.subtitulo}} </i></p>
+        <p>Cuerpo: <i>{{model.cuerpo}} </i></p>
+        <p>Post: <i>{{model.post}} </i></p>
+        <a href="{% url 'lista' %}"> Regresar </a>
+    </div>
+{% endblock %}

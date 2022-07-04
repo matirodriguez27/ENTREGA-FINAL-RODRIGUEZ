@@ -1,0 +1,15 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoVariable%}
+    
+    <div class="content contact-form">
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            <h3>Estas seguro que desea borrar el post "{{ object }}"?</h3>
+            <button class="btn submit" type="submit"> Si, borrar.</button>
+        </form>
+    </div>
+
+{% endblock %}
