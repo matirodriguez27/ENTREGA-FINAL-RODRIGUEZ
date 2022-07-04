@@ -9,22 +9,22 @@
         <div class="grid grid-pad">
             <div class="content" >
                 <h2>Blog</h2>
-                
+                <a class="btn read-more" href="{% url 'Nuevo' %}">Nueva entrada.</a>
                 {% for post in object_list %}
-                <h4>HOLAAAAAAA</h4>
                 <div class="col-1-2" >
                     <article class="post-wrap">
                         <div class="post-img">
-                            <a href="#0"><img src="images/post/post-n1.jpg" alt=""></a>
+                            <img  style='height: auto; width: 100px; object-fit: contain' src="{{ MEDIA_URL }}{{ post.imagen.url }}" alt="img">
                         </div>
                         <div class="post">
-                            <h2 class="entry-title"><a href="#0">Drawing hour</a></h2>
+                            <h2 class="entry-title"><a href="{% url 'Detalle' post.id %}">{{ post.titulo }}</a></h2>
                             <div class="post-meta">
-                                <a href="#0">15 Januar, 2015</a> <span class="mid-sep">·</span> <a href="#0">Graphic Design</a>
+                                <a>{{post.fecha}}</a>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, sequi, quas, assumenda harum nam reiciendis obcaecati maxime <a href="#0">suscipit</a> quibusdam.
-                            </p>
-                            <a class="btn read-more" href="#0">Read More</a>
+                            <p>{{post.subtitulo}}</p>
+                            <a class="btn read-more" href="{% url 'Detalle' post.id %}">Ver.</a>
+                            <a class="btn read-more" href="{% url 'Editar' post.id %}">Editar.</a>
+                            <a class="btn read-more" href="{% url 'Borrar' post.id %}">Borrar.</a>
                         </div>
                     </article>
                 </div>

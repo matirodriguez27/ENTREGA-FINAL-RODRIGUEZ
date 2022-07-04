@@ -20,7 +20,7 @@ class UserEditForm(forms.ModelForm):
         model = User
         fields = ['username', 'email']
 
-class UserProfileForm(forms.ModelForm):
+class UserProfileForm(forms.ModelForm):00
     avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
     bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
 

@@ -7,7 +7,7 @@
     <div class="content contact-form">
         <form class="form" action="" method="POST">
             {% csrf_token %}
-            <h3>Estas seguro que desea borrar el post "{{ object }}"?</h3>
+            <h2 style="color:#000000">Estas seguro que desea borrar el post "{{ object }}"?</h2>
             <button class="btn submit" type="submit"> Si, borrar.</button>
         </form>
     </div>
