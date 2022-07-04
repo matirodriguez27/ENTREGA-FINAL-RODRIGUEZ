@@ -41,6 +41,10 @@
                                 <li><a href="{% url 'inicio'%}">Mensajería</a></li>
                                 <li><a href="{% url 'about'%}">Acerca de</a></li>
                                 <li><a href="{% url 'profile'%}">Mi Perfil</a></li>
+                                {% if request.user.is_authenticated %}
+                                    <li><a href="{% url 'logout'%}">Cerrar sesión</a></li>    
+                                {% endif %}
+                               
                             </ul>
                         </nav>
                     </div>
