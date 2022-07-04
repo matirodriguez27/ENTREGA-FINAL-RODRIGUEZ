@@ -3,45 +3,33 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from .models import Post
+from .models import Posteo
 from django.urls import reverse_lazy 
 from .forms import PostForm
 from django.utils import timezone
+from django.http import HttpResponseRedirect
 
 class ListaPosts(ListView):
-    model = Post
+    model = Posteo
     template_name="listaposts.html"
 class DetallePost(DetailView):
-    model = Post
+    model = Posteo
     template_name="detallepost.html"
+    fields = ['autor','titulo', 'subtitulo', 'cuerpo','imagen']
 class EditarPost(UpdateView):
-    model = Post
-    template_name = ""
+    model = Posteo
+    template_name = "editarpost.html"
+    fields = ['titulo', 'subtitulo', 'cuerpo','imagen']
     success_url= reverse_lazy('Lista')
-    fields = ['titulo', 'subtitulo', 'cuerpo', 'post']
 class BorrarPost(DeleteView):
-    model = Post
+    model = Posteo
     template_name = "borrarpost.html"
     success_url= reverse_lazy('Lista')
 class NuevoPost(CreateView):
-    model = Post
+    model = Posteo
     template_name = "nuevopost.html"
-    fields = '__all__'
-def agregarPost(request):
-    if request.method == "POST":
-        usuario = request.user
-        form = PostForm(request.POST)
-        form.autor = usuario.id
-        form.fecha = timezone.now
-        form.imagen = 'default.jpeg'
-        if form.is_valid():
-            form.save()
-            return redirect(to='Lista')
-        else:
-            return render(request,"error.html", {"mensaje":form.errors})
-    else:
-        form = PostForm()
-        return render(request, "nuevopost.html", {"form":form})
-
-
-
+    success_url= reverse_lazy('Lista')
+    fields = ['titulo', 'subtitulo', 'cuerpo','imagen']
+    def form_valid(self, form):
+        form.instance.autor = self.request.user
+        return super().form_valid(form)

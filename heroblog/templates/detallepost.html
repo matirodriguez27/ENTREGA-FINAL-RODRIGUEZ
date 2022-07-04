@@ -5,10 +5,10 @@
 {% block contenidoVariable%}
     
     <div class="content contact-form">
-        <p>Titulo: <i>{{post.titulo}} </i></p>
-        <p>Subitulo: <i>{{post.subtitulo}} </i></p>
-        <p>Cuerpo: <i>{{post.cuerpo}} </i></p>
-        <p>Imagen:<img  style='height: auto; width: 100px; object-fit: contain' src="{{ MEDIA_URL }}{{ post.imagen.url }}" alt="img"></p>
+        <p>Titulo: <i>{{object.titulo}} </i></p>
+        <p>Subitulo: <i>{{object.subtitulo}} </i></p>
+        <p>Cuerpo: <i>{{object.cuerpo}} </i></p>
+        <p>Imagen:<img  style='height: auto; width: 100px; object-fit: contain' src="{{ MEDIA_URL }}{{ object.imagen.url }}" alt="img"></p>
         <br>
         <a href="{% url 'Lista' %}"> Regresar </a>
     </div>
