@@ -11,7 +11,7 @@ class Posteo(models.Model):
     imagen = models.ImageField(upload_to='posts')
 
     def __str__(self):
-        return self.autor.username
+        return self.titulo
     def save(self, *args, **kwargs):
         super().save()
 
