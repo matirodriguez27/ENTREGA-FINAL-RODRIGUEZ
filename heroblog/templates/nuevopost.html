@@ -1,7 +1,8 @@
 {% extends "padre.html" %}
 
 {% load static %}
-
+<script type="text/javascript" src="{% static 'staticfiles/ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'staticfiles/ckeditor/ckeditor/ckeditor.js' %}"></script>
 {% block contenidoVariable%}
     
 <div class="wrap contact" id="contact">
@@ -9,6 +10,7 @@
         <div class="col-1-1">   
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                {{ form.media }}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-dark btn-lg">Guardar cambios</button>
             </form>

@@ -2,11 +2,13 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from PIL import Image
+from ckeditor.fields import RichTextField
+
 class Posteo(models.Model):
     titulo = models.CharField(max_length=250)
     subtitulo = models.CharField(max_length=250)
     autor = models.CharField(max_length=250)
-    cuerpo = models.TextField()
+    cuerpo = RichTextField(blank=True,null=True)
     fecha = models.DateField(default=timezone.now)
     imagen = models.ImageField(upload_to='posts')
 

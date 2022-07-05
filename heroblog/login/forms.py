@@ -5,7 +5,7 @@ from django.views.generic import CreateView
 from .models import Profile
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'}))
+    username = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'Usuario', 'class': 'form-control'}))
     email = forms.EmailField(required=True,widget=forms.TextInput(attrs={'placeholder': 'Email','class': 'form-control',}))
     password1 = forms.CharField(max_length=50, required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña','class': 'form-control','data-toggle': 'password',}))
     password2 = forms.CharField(max_length=50, required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Confirmar contraseña','class': 'form-control','data-toggle': 'password',}))
@@ -19,10 +19,12 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
-
+class URLInput(forms.TextInput):
+    input_type = 'url'
 class UserProfileForm(forms.ModelForm):
     avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
     bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
+    website = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'placeholder': 'Website', 'class': 'form-control'}))
     class Meta:
         model = Profile
-        fields = ['avatar', 'bio']
+        fields = ['avatar', 'bio','website']
