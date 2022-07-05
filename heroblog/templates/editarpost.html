@@ -3,10 +3,19 @@
 {% load static %}
 
 {% block contenidoVariable%}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-dark btn-lg">Guardar cambios</button>
-    </form>
+    
+<div class="wrap contact" id="contact">
+    <div class="grid grid-pad">
+        <div class="col-1-1">
+            <div class="content contact-form">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-dark btn-lg">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}

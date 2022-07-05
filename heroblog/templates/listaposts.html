@@ -4,34 +4,39 @@
 
 {% block contenidoVariable%}
     
-     <!-- Blog Section -->
-     <div class="wrap blog-grid grey" id="blog">
-        <div class="grid grid-pad">
-            <div class="content" >
-                <h2>Blog</h2>
-                <a class="btn read-more" href="{% url 'Nuevo' %}">Nueva entrada.</a>
+<div class="wrap blog-grid" id="blog">
+    <div class="grid grid-pad">
+        <div class="content" >
+            <h2>Blog</h2>
+            <div class="col-1-1"><a class="btn" href="{% url 'Nuevo' %}">Nueva entrada</a></div>
+            {% if  object_list%}
                 {% for post in object_list %}
                 <div class="col-1-2" >
                     <article class="post-wrap">
                         <div class="post-img">
-                            <img  style='height: auto; width: 100px; object-fit: contain' src="{{ MEDIA_URL }}{{ post.imagen.url }}" alt="img">
-                        </div>
+                            <img  style='max-height: 230px; max-width: 600px;object-fit: cover;' src="{{ MEDIA_URL }}{{ post.imagen.url }}" alt="img">
+                        </div>    
                         <div class="post">
                             <h2 class="entry-title"><a href="{% url 'Detalle' post.id %}">{{ post.titulo }}</a></h2>
                             <div class="post-meta">
                                 <a>{{post.fecha}}</a>
                             </div>
+                            <p>{{post.autor}}</p>
                             <p>{{post.subtitulo}}</p>
-                            <a class="btn read-more" href="{% url 'Detalle' post.id %}">Ver.</a>
-                            <a class="btn read-more" href="{% url 'Editar' post.id %}">Editar.</a>
-                            <a class="btn read-more" href="{% url 'Borrar' post.id %}">Borrar.</a>
+                            <a class="btn read-more" href="{% url 'Detalle' post.id %}">Ver</a>
+                            {% if request.user.is_authenticated and request.user.username == post.autor %}
+                            <a class="btn read-more" href="{% url 'Editar' post.id %}">Editar</a>
+                            <a class="btn read-more" href="{% url 'Borrar' post.id %}">Borrar</a>
+                            {% endif %}
                         </div>
                     </article>
                 </div>
                 {% endfor %}
-
-            </div>
+            {% else %}
+                <h2>No hay posteos todavia...</h2>
+            {% endif %}
         </div>
     </div>
+</div>
     <!-- End Blog Section -->
 {% endblock %}

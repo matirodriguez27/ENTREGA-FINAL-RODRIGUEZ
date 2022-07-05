@@ -3,11 +3,10 @@
 {% load static %}
 
 {% block contenidoVariable%}
-<h1>{{mensaje}}</h1>
-<!-- Services Section -->
+
 <div class="wrap services-wrap" id="services">
     <section class="grid grid-pad services">
-        <h1 color = black>Herramientas</h2>
+        <h2 color = black>Herramientas</h2>
         <div class="col-1-3 service-box service-1" >
             <div class="content">
                 <div class="service-icon">
@@ -15,7 +14,7 @@
                 </div>
                 <div class="service-entry">
                     <h4 color = black>Blog</h3>
-                    <a class="btn read-more" href="{% url 'inicio'%}">Ver más</a>
+                    <a class="btn read-more" href="{% url 'Lista'%}">Ver más</a>
                 </div>
             </div>
         </div>
@@ -43,5 +42,5 @@
         </div>
     </section>
 </div>
-<!-- End Services Section -->
+
 {% endblock %}

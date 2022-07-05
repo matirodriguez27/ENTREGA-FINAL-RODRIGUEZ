@@ -3,12 +3,20 @@
 {% load static %}
 
 {% block contenidoVariable%}
-    <div class="content contact-form">
-        <form class="form" action="" method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button class="btn submit" type="submit"> Iniciar sesión</button>
-            <li><a href="{% url 'signup'%}">Registrarse</a></li>
-        </form>
+
+<div class="wrap contact" id="contact">
+    <div class="grid grid-pad">
+        <div class="col-1-1">
+            <div class="content contact-form">
+                <form class="form" action="" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn submit" type="submit"> Iniciar sesión</button>
+                    <li><a href="{% url 'signup'%}">Registrarse</a></li>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
+
 {% endblock %}
