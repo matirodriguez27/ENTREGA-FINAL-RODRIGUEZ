@@ -1,13 +1,9 @@
-from audioop import reverse
-from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from .models import Posteo
 from django.urls import reverse_lazy 
-from .forms import PostForm
-from django.utils import timezone
-from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ListaPosts(ListView):
     model = Posteo
@@ -25,7 +21,7 @@ class BorrarPost(DeleteView):
     model = Posteo
     template_name = "borrarpost.html"
     success_url= reverse_lazy('Lista')
-class NuevoPost(CreateView):
+class NuevoPost(LoginRequiredMixin, CreateView):
     model = Posteo
     template_name = "nuevopost.html"
     success_url= reverse_lazy('Lista')

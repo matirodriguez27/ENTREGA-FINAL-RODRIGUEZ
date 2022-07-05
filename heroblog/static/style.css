@@ -49,11 +49,11 @@ Grey #ECF0F1
 }
 
 a {
-  color:#7c261b;
+  color:#461610;
 }
 
 a:hover {
-  color: #16a085;
+  color: #530f0f;
 }
 
 a, img, .overlay, input, textarea, .plan-wrap p, .filters .filter {
@@ -1228,7 +1228,7 @@ address i {
 
 .box-icon i {
   line-height: 45px;
-  color: #16a085;
+  color: #4e0c0c;
 }
 
 /* Form, Comments and Contact */
@@ -1518,7 +1518,7 @@ footer p, footer a {
 }
 
 .sl-tw i:hover {
-  color: #74c7d5;
+  color: #581919;
 }
 
 .sl-gp i:hover {
@@ -1559,7 +1559,7 @@ footer p, footer a {
   width: 150px;
 }
 .loader .bar {
-  background-color: #69C98C;
+  background-color: #581414;
   font-size: 0;
   height: 6px;
   border-radius: 3px;

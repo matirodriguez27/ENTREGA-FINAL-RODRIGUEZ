@@ -1,11 +1,8 @@
 from login.forms import UserRegisterForm, UserEditForm, UserProfileForm
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-
-
-
 def login_request(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data = request.POST)
@@ -35,8 +32,6 @@ def signup(request):
     else:
         form = UserRegisterForm()
         return render(request, "signup.html", {"form":form})
-
-
 
 @login_required
 def profile(request):
