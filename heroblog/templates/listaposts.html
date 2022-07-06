@@ -23,7 +23,7 @@
                             <p>{{post.autor}}</p>
                             <p>{{post.subtitulo}}</p>
                             <a class="btn read-more" href="{% url 'Detalle' post.id %}">Leer más</a>
-                            {% if request.user.is_authenticated and request.user.username == post.autor %}
+                            {% if request.user.is_authenticated and request.user.username == post.autor or request.user.is_superuser %}
                             <a class="btn read-more" href="{% url 'Editar' post.id %}">Editar</a>
                             <a class="btn read-more" href="{% url 'Borrar' post.id %}">Borrar</a>
                             {% endif %}
