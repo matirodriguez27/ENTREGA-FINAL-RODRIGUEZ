@@ -4,7 +4,7 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models. ImageField(default = 'default.png', upload_to='profile_images')
+    avatar = models. ImageField(default = 'default.png', upload_to='profile_images', null = True, blank = True)
     bio = models.TextField()
     website = models.CharField(max_length=200)
     def __str__(self):
